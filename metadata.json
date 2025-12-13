@@ -1,0 +1,5 @@
+{
+  "name": "NightSight Enhancer",
+  "description": "A web-based night vision enhancement tool that applies histogram equalization, gamma correction, and sharpening filters to reveal details in dark images.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NightSight Enhancer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              night: {
+                900: '#0a0a0a',
+                800: '#121212',
+                700: '#1e1e1e',
+              },
+              vision: {
+                400: '#4ade80', // green-400
+                500: '#22c55e', // green-500
+                glow: '#22c55e',
+              }
+            },
+            fontFamily: {
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #e5e5e5;
+      }
+      .vision-glow {
+        box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+      }
+      .vision-border {
+        border: 1px solid rgba(74, 222, 128, 0.3);
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #22c55e;
+      }
+    </style>
+    <!-- Load OpenCV.js -->
+    <script>
+      // Initialize OpenCV.js when loaded
+      function initOpenCV() {
+        if (typeof cv !== 'undefined') {
+          if (cv['onRuntimeInitialized']) {
+            cv['onRuntimeInitialized'] = () => {
+              window.cv = cv;
+              window.cvIsReady = true;
+              console.log('OpenCV.js initialized');
+            };
+          } else {
+            window.cv = cv;
+            window.cvIsReady = true;
+            console.log('OpenCV.js ready');
+          }
+        } else {
+          // Poll for cv object (in case script loads before this runs)
+          const checkCv = setInterval(() => {
+            if (typeof cv !== 'undefined') {
+              window.cv = cv;
+              if (cv['onRuntimeInitialized']) {
+                cv['onRuntimeInitialized'] = () => {
+                  window.cvIsReady = true;
+                  console.log('OpenCV.js initialized');
+                };
+              } else {
+                window.cvIsReady = true;
+                console.log('OpenCV.js ready');
+              }
+              clearInterval(checkCv);
+            }
+          }, 100);
+          setTimeout(() => clearInterval(checkCv), 30000);
+        }
+      }
+    </script>
+    <script async src="https://docs.opencv.org/4.8.0/opencv.js" onload="initOpenCV()"></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
