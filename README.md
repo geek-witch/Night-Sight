@@ -1,20 +1,83 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+#  README.md 
+## 🌙 NightSight Enhancer
 
-# Run and deploy your AI Studio app
+A machine learning–powered tool designed to enhance low-light images using advanced processing, feature extraction, and object detection pipelines.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/drive/18OLniOp_GV3Uw82BUN3mujP0UIdwoz-I
+## 🚀 Features
 
-## Run Locally
+* Low-light image enhancement
+* YOLO-based object detection
+* Video frame processing
+* Feature extraction
+* Model comparison & performance metrics
+* Clean UI with multi-step workflow
+* Upload → Process → Detect 
 
-**Prerequisites:**  Node.js
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:** React + TypeScript + Vite
+**ML Modules:** Custom YOLO Model Loader, Feature Extractor
+**Workers:** Web Workers for parallel processing
+**Utilities:** Image enhancement tools, metrics calculator
+
+---
+
+## 📂 Project Structure
+
+```
+├── components/
+├── services/
+│   ├── imageUtils.ts
+│   ├── yoloDetection.ts
+│   ├── featureExtraction.ts
+│   ├── modelTraining.ts
+│   └── pipelineService.ts
+├── App.tsx
+├── index.tsx
+├── metadata.json
+└── README.md
+```
+
+---
+
+## 🔧 How to Run Locally
+
+### 1. Install dependencies
+
+```
+npm install
+```
+
+### 2. Start development server
+
+```
+npm run dev
+```
+
+### 3. Build for production
+
+```
+npm run build
+```
+
+---
+
+## 📸 Usage Steps
+
+1. Upload image
+2. Choose processing pipeline
+3. Run enhancement
+4. Run object detection
+5. Export output
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
